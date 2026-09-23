@@ -45,8 +45,8 @@
 
         </div>
 
-        <button type="submit" class="btn-main ms-auto d-block" [disabled]="registerForm.invalid">Register</button>
-        <p *ngIf="msgError">{{msgError}}</p>
+        <button type="submit" class="btn-main ms-auto d-block" [disabled]="registerForm.invalid"><i *ngIf="isLoading" class="fas fa-spinner fa-spin"></i>Register</button>
+        <p *ngIf="msgError" class="alert alert-danger">{{msgError}}</p>
 
     </form>
 </section>

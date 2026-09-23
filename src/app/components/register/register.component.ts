@@ -9,8 +9,12 @@ import { AuthService } from 'src/app/shared/services/auth.service';
   styleUrls: ['./register.component.css']
 })
 export class RegisterComponent {
+
   constructor(private _AuthService:AuthService, private _Router:Router){}
+
   msgError:string='';
+  isLoading:boolean=false;
+
   registerForm:FormGroup= new FormGroup({
     name: new FormControl('',[Validators.required,Validators.minLength(3),Validators.maxLength(20)]),
     email: new FormControl('',[Validators.required,Validators.email]),
@@ -21,16 +25,16 @@ export class RegisterComponent {
 
   handleForm(){
     if(this.registerForm.valid){
+      this.isLoading=true;
       this._AuthService.setRegister(this.registerForm.value).subscribe({
       next:(response)=>{
-        console.log(response);
         if(response.message =='success'){
+        this.isLoading=false;
         this._Router.navigate(['/login'])
         }
       },
       error:(error)=>{
-        console.log(error.error);
-console.log(error.error.errors);
+        this.isLoading=false;
         this.msgError=error.error.message;
       }
     })
