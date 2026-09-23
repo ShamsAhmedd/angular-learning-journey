@@ -11,4 +11,8 @@ export class AuthService {
   setRegister(userData:object):Observable<any>{
     return this._HttpClient.post(`https://ecommerce.routemisr.com/api/v1/auth/signup`,userData)
   }
+
+  setLogin(userData:object):Observable<any>{
+    return this._HttpClient.post(`https://ecommerce.routemisr.com/api/v1/auth/signin`,userData)
+  }
 }
